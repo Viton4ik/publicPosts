@@ -1,3 +1,5 @@
+I. BackEnd
+
 1. Создаем виртуальное окружение командой python3 -m venv ./venv
 
 2. Запускаем окружение source venv/bin/activate
@@ -6,6 +8,7 @@
 pip install django
 pip install djangorestframework
 pip install django-cors-headers
+pip install django-filter
 
 3. Создаем проект django-admin startproject publicposts
 
@@ -21,6 +24,8 @@ pip install django-cors-headers
             CORS_ORIGIN_WHITELIST = (
                 'http://localhost:3000',
             )
+            - CORS — это система совместного использования ресурсов между разными источниками. 
+                Эта система, ограничивающая взаимодействие бэкенд-сервера с фронтендом. И никакие другие запросы не будут пропущены. Если наш сервер решит отправить запрос серверу google.com, CORS заблокирует этот запрос.
 
 5. Создаем новое приложение Django под названием publicpostsapp, выполняем команды из окружения:
     - cd publicposts
@@ -33,3 +38,60 @@ pip install django-cors-headers
 7. Выполняем миграцию базы данных:  python manage.py migrate
 
 8. Запускаем локальный сервер: python manage.py runserver
+
+9. models.py:
+    - Согласно намеченному плану, оформляем три поля:
+        - text — текст сообщения, символьный формат;
+        - likesCount — количество лайков, целочисленный, стандартное значение — 0.
+        - date — дата и время создания, автоматически записываем текущее время.
+
+10. - python manage.py makemigrations
+    - python manage.py migrate
+
+
+II. FrontEnd
+
+Будем реализовывать:
+
+- компонент генератора постов;
+- компонент для ввода и отправки данных на сервер.
+    - Для подготовки работы с API мы создадим модуль-шаблон с пустыми функциями обращения к серверу.
+
+1. Запускаем терминал в папке publicposts/
+ - cd publicposts
+    - npx create-react-app frontend (Для этого нам понадобится установленный Node.js и npm)
+
+2. Переходим в папку frontend и вызываем терминал оттуда:
+ - cd frontend/
+
+3. Выполняем команду для установки Axios:
+    - npm install axios --save
+
+4. Запускаем сервер и радуемся его работоспособности!
+    - npm start
+
+
+III. Приступим к созданию основного компонента (циклический сбор постов).
+
+1. Создаем файл Posts.js в папке publicposts/frontend/src/
+
+2. Редактируем файл publicposts/frontend/src/App.js
+    - удаляем все лишнее и подгружаем наш компонент Posts
+
+IV. Прежде чем передавать данные, нам нужно их сериализовать, то есть превращать в последовательность байтов. Django REST Framework предоставляет быструю развертку для данных методов.
+
+1. Создадим файл serializers.py в publicposts/publicpostsapp (не забываем настроить интерпритатор из venv)
+
+2. Нужно написать функции для API в файле publicposts/publicpostsapp/views.py.
+
+3. Добавить необходимые пути для нашего сервера в файле publicposts/publicposts/urls.py.
+
+
+V. Подключаем фронтенд к бэкенду:
+
+1. Согласно файлу publicposts/frontend/src/PostService.js, нам нужно три запроса от сервера:
+
+    - Получить список всех постов.
+    - Добавить новый пост.
+    - Поставить лайк посту по id.
+

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',  # -#
     'rest_framework', 
     'corsheaders',
     'publicpostsapp',
@@ -130,3 +131,22 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
 )
+# CORS_ALLOWED_ORIGINS = (
+#     'http://localhost:3000',
+# )
+
+
+# from rest_framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
+    #  'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework.authentication.BasicAuthentication',
+    #     'rest_framework.authentication.SessionAuthentication',
+    # ],
+    #        'DEFAULT_PERMISSION_CLASSES': [
+    #        'rest_framework.permissions.IsAuthenticated',
+    #  'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    #    ]
+}
