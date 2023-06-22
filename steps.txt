@@ -1,0 +1,35 @@
+1. Создаем виртуальное окружение командой python3 -m venv ./venv
+
+2. Запускаем окружение source venv/bin/activate
+
+3. Устанавливаем необходимые библиотеки:
+pip install django
+pip install djangorestframework
+pip install django-cors-headers
+
+3. Создаем проект django-admin startproject publicposts
+
+4. Прописываем в настройки установленные модули:
+ - settings.py:
+        - Добавляем в INSTALLED_APPS в конец:
+            'rest_framework', 
+            'corsheaders',
+        - Добавляем в MIDDLEWARE в конец:
+            'corsheaders.middleware.CorsMiddleware',
+        - Добавляем в конец файла:
+            CORS_ORIGIN_ALLOW_ALL = False
+            CORS_ORIGIN_WHITELIST = (
+                'http://localhost:3000',
+            )
+
+5. Создаем новое приложение Django под названием publicpostsapp, выполняем команды из окружения:
+    - cd publicposts
+    - python manage.py startapp publicpostsapp
+
+6. Возвращаемся к файлу settings.py
+    - Добавляем в INSTALLED_APPS в конец наше приложение:
+        'publicpostsapp',
+
+7. Выполняем миграцию базы данных:  python manage.py migrate
+
+8. Запускаем локальный сервер: python manage.py runserver
