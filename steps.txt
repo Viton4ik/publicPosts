@@ -70,6 +70,92 @@ II. FrontEnd
 4. Запускаем сервер и радуемся его работоспособности!
     - npm start
 
+!!! 5. Пакетный React работает с ошибками, в связи с чем он удален и мы используем обычный webpack, который настраиваем вручную:
+
+5.1.
+- npm init -y
+
+- npm install webpack webpack-cli
+
+- npm install @babel/core babel-loader @babel/preset-react @babel/preset-env
+
+- package.json: добавим в объект:
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack"
+    or
+    "start": "webpack --mode-development --watch",
+    "build": "webpack --mode-production"
+
+- создадим файл с названием webpack.config.js:
+    module.exports = {
+    entry: "./src/index.js",
+    output: {
+        path: path.join(__dirname, "/dist"),
+        filename: "index.js",
+        publicPath: '/',   -чтобы гарантировать, что все ресурсы будут ссылаться на корневой путь
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,              // test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-react"]
+                      }
+                }
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            }
+        ]
+    }
+    }
+
+- npm install react react-dom
+
+- npm install style-loader css-loader
+
+- src/index.js to be created
+
+- src/index.html to be created with (<div id="root"></div>)
+
+- .babelrc file to be created
+    {
+    "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+
+- npm i html-webpack-plugin
+
+    for webpack.config.js -> 
+    const path = require('path');
+    const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+    plugins: [
+            new HtmlWebpackPlugin({
+                template: "./src/index.html"
+            })
+        ],
+
+- create src/components/App.js
+- create styles/App.css
+
+- npm install --save-dev webpack-dev-server
+
+    for webpack.config.js -> 
+        devServer: {
+            port: 3000,
+            historyApiFallback: true,
+        },
+
+- npm install axios --save
+
+- npm start
+
+- npm run build
+Теперь все работает !!!
 
 III. Приступим к созданию основного компонента (циклический сбор постов).
 
@@ -94,4 +180,6 @@ V. Подключаем фронтенд к бэкенду:
     - Получить список всех постов.
     - Добавить новый пост.
     - Поставить лайк посту по id.
+
+
 
