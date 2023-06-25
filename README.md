@@ -33,7 +33,7 @@ git clone https://github.com/Viton4ik/publicPosts.git
 
 ```
 ```sh
-cd publicposts
+cd publicPosts
 ```
 - Create a virtual environment
 
@@ -48,7 +48,7 @@ source venv/bin/activate
 - Download libraries
 
 ```sh
-cd publicPosts
+cd publicposts
 pip3 install -r requirements.txt
 ```
 - Run Django server
