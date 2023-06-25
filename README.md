@@ -1,6 +1,6 @@
 # PublicPostsApp
 
-## _PublicPostsApp - messenger with using Django and React/Webpack_
+## _PublicPostsApp - a simple messenger with using Django and React/Webpack_
 
 ##
 ✨Idea:✨
