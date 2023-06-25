@@ -87,5 +87,5 @@ npm start
 
 ## Views
 
-<img src="https://img.shields.io/static/v1?label=1&message=REST API&color=9cf"/>
-<h3 align="center"><img src="https://github.com/Viton4ik/MenuApp/blob/master/BackEnd/MenuApp/media/pictures/REST.png"/></h3> 
+<img src="https://img.shields.io/static/v1?label=1&message=view&color=9cf"/>
+<h3 align="center"><img src="https://github.com/Viton4ik/publicPosts/blob/master/pic.png"/></h3> 
