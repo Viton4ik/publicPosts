@@ -33,7 +33,7 @@ git clone https://github.com/Viton4ik/publicPosts.git
 
 ```
 ```sh
-cd publicPosts
+cd publicposts
 ```
 - Create a virtual environment
 
