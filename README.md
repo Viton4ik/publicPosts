@@ -62,7 +62,7 @@ python3 manage.py runserver
 - Open a new terminal
 
 ```sh
-cd publicPosts/frontend
+cd publicPosts/publicposts/frontend
 ```
 - Initialization 
 
